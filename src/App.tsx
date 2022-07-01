@@ -1,9 +1,11 @@
+import { Header } from './components/Header';
+
 import './global.css';
 
 export const App = () => {
   return (
     <div>
-      <h1>Challenge 01 - ReactJS Fundamentals</h1>
+      <Header />
     </div>
   );
 };
