@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { PlusCircle } from 'phosphor-react';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Header } from './components/Header';
 import { Task } from './components/Task';
@@ -7,6 +9,19 @@ import styles from './App.module.css';
 import './global.css';
 
 export const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: uuidv4(),
+      finished: false,
+      content: 'Go to gym',
+    },
+    {
+      id: uuidv4(),
+      finished: true,
+      content: 'Do the homework',
+    },
+  ]);
+
   return (
     <div>
       <Header />
@@ -32,11 +47,17 @@ export const App = () => {
             </div>
           </header>
 
-          <div className={styles.tasksList}>
-            <Task />
-            <Task />
-            <Task />
-          </div>
+          {tasks.length && (
+            <div className={styles.tasksList}>
+              {tasks.map((task) => (
+                <Task
+                  key={task.id}
+                  finished={task.finished}
+                  content={task.content}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </main>
     </div>

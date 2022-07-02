@@ -2,9 +2,12 @@ import { Check, Trash } from 'phosphor-react';
 
 import styles from './Task.module.css';
 
-export const Task = () => {
-  const finished = false;
+interface TaskProps {
+  finished: boolean;
+  content: string;
+}
 
+export const Task = ({ finished, content }: TaskProps) => {
   return (
     <div
       className={`${styles.taskContainer} ${
@@ -19,8 +22,7 @@ export const Task = () => {
       </button>
 
       <p className={`${styles.text} ${finished && styles.strikeThroughText}`}>
-        Integer urna interdum massa libero auctor neque turpis turpis semper.
-        Duis vel sed fames integer.
+        {content}
       </p>
 
       <button title="Delete Task" className={styles.deleteButton}>
