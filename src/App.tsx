@@ -1,6 +1,7 @@
 import { PlusCircle } from 'phosphor-react';
 
 import { Header } from './components/Header';
+import { Task } from './components/Task';
 import styles from './App.module.css';
 
 import './global.css';
@@ -32,9 +33,9 @@ export const App = () => {
           </header>
 
           <div className={styles.tasksList}>
-            <p>Task 1</p>
-            <p>Task 2</p>
-            <p>Task 3</p>
+            <Task />
+            <Task />
+            <Task />
           </div>
         </div>
       </main>
