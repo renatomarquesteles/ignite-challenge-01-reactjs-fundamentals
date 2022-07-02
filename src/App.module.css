@@ -49,3 +49,44 @@
   opacity: 0.7;
   cursor: not-allowed;
 }
+
+.tasksInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4rem;
+}
+
+.tasksInfoWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.tasksCount {
+  font-size: 0.875rem;
+  font-weight: bold;
+  line-height: 1.21;
+  color: var(--blue);
+}
+
+.tasksDone {
+  font-size: 0.875rem;
+  font-weight: bold;
+  line-height: 1.21;
+  color: var(--purple);
+}
+
+.infoCount {
+  margin-left: 0.5rem;
+  background: var(--gray-400);
+  border-radius: 999px;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 1.25;
+  color: var(--gray-200);
+}
+
+.tasksList {
+  margin-top: 1.5rem;
+}

@@ -17,6 +17,26 @@ export const App = () => {
             Create <PlusCircle size={20} />
           </button>
         </form>
+
+        <div>
+          <header className={styles.tasksInfo}>
+            <div className={styles.tasksInfoWrapper}>
+              <span className={styles.tasksCount}>Created Tasks</span>
+              <span className={styles.infoCount}>0</span>
+            </div>
+
+            <div className={styles.tasksInfoWrapper}>
+              <span className={styles.tasksDone}>Done</span>
+              <span className={styles.infoCount}>0</span>
+            </div>
+          </header>
+
+          <div className={styles.tasksList}>
+            <p>Task 1</p>
+            <p>Task 2</p>
+            <p>Task 3</p>
+          </div>
+        </div>
       </main>
     </div>
   );
