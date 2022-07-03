@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { PlusCircle } from 'phosphor-react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -15,6 +15,7 @@ interface Task {
 }
 
 export const App = () => {
+  const [newTaskText, setNewTaskText] = useState('');
   const [tasks, setTasks] = useState<Task[]>([
     {
       id: uuidv4(),
@@ -27,6 +28,20 @@ export const App = () => {
       content: 'Do the homework',
     },
   ]);
+
+  const handleCreateTask = (e: FormEvent) => {
+    e.preventDefault();
+
+    setTasks((state) => [
+      {
+        id: uuidv4(),
+        finished: false,
+        content: newTaskText,
+      },
+      ...state,
+    ]);
+    setNewTaskText('');
+  };
 
   const switchTaskStatus = (taskId: string) => {
     setTasks((state) =>
@@ -54,9 +69,14 @@ export const App = () => {
       <Header />
 
       <main className={styles.content}>
-        <form className={styles.newTaskForm}>
-          <input type="text" placeholder="Add a new task" />
-          <button type="submit">
+        <form onSubmit={handleCreateTask} className={styles.newTaskForm}>
+          <input
+            type="text"
+            placeholder="Add a new task"
+            value={newTaskText}
+            onChange={(e) => setNewTaskText(e.target.value)}
+          />
+          <button type="submit" disabled={newTaskText.length === 0}>
             Create <PlusCircle size={20} />
           </button>
         </form>
