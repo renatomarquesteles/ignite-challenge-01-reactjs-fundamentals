@@ -5,9 +5,10 @@ import styles from './Task.module.css';
 interface TaskProps {
   finished: boolean;
   content: string;
+  deleteTask: () => void;
 }
 
-export const Task = ({ finished, content }: TaskProps) => {
+export const Task = ({ finished, content, deleteTask }: TaskProps) => {
   return (
     <div
       className={`${styles.taskContainer} ${
@@ -25,7 +26,11 @@ export const Task = ({ finished, content }: TaskProps) => {
         {content}
       </p>
 
-      <button title="Delete Task" className={styles.deleteButton}>
+      <button
+        title="Delete Task"
+        className={styles.deleteButton}
+        onClick={deleteTask}
+      >
         <Trash size={20} />
       </button>
     </div>

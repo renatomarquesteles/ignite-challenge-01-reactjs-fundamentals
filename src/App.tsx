@@ -22,6 +22,10 @@ export const App = () => {
     },
   ]);
 
+  const deleteTask = (taskId: string) => {
+    setTasks((state) => state.filter((task) => task.id !== taskId));
+  };
+
   return (
     <div>
       <Header />
@@ -47,13 +51,14 @@ export const App = () => {
             </div>
           </header>
 
-          {tasks.length && (
+          {!!tasks.length && (
             <div className={styles.tasksList}>
               {tasks.map((task) => (
                 <Task
                   key={task.id}
                   finished={task.finished}
                   content={task.content}
+                  deleteTask={() => deleteTask(task.id)}
                 />
               ))}
             </div>
