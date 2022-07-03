@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { PlusCircle } from 'phosphor-react';
+import { ClipboardText, PlusCircle } from 'phosphor-react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Header } from './components/Header';
@@ -16,18 +16,7 @@ interface Task {
 
 export const App = () => {
   const [newTaskText, setNewTaskText] = useState('');
-  const [tasks, setTasks] = useState<Task[]>([
-    {
-      id: uuidv4(),
-      finished: false,
-      content: 'Go to gym',
-    },
-    {
-      id: uuidv4(),
-      finished: true,
-      content: 'Do the homework',
-    },
-  ]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   const handleCreateTask = (e: FormEvent) => {
     e.preventDefault();
@@ -103,7 +92,7 @@ export const App = () => {
             </div>
           </header>
 
-          {!!tasks.length && (
+          {!!tasks.length ? (
             <div className={styles.tasksList}>
               {tasks.map((task) => (
                 <Task
@@ -114,6 +103,16 @@ export const App = () => {
                   deleteTask={() => deleteTask(task.id)}
                 />
               ))}
+            </div>
+          ) : (
+            <div className={styles.emptyListContainer}>
+              <ClipboardText size={56} />
+              <div>
+                <p className={styles.boldText}>
+                  You don't have any task registered yet
+                </p>
+                <p>Create new tasks and manage your to-do's list</p>
+              </div>
             </div>
           )}
         </div>
