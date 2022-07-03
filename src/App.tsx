@@ -64,6 +64,13 @@ export const App = () => {
     setTasks((state) => state.filter((task) => task.id !== taskId));
   };
 
+  const completedTasksCount = tasks.reduce((count, current) => {
+    if (current.finished) {
+      return count + 1;
+    }
+    return count;
+  }, 0);
+
   return (
     <div>
       <Header />
@@ -85,12 +92,14 @@ export const App = () => {
           <header className={styles.tasksInfo}>
             <div className={styles.tasksInfoWrapper}>
               <span className={styles.tasksCount}>Created Tasks</span>
-              <span className={styles.infoCount}>0</span>
+              <span className={styles.infoCount}>{tasks.length}</span>
             </div>
 
             <div className={styles.tasksInfoWrapper}>
               <span className={styles.tasksDone}>Done</span>
-              <span className={styles.infoCount}>0</span>
+              <span
+                className={styles.infoCount}
+              >{`${completedTasksCount} of ${tasks.length}`}</span>
             </div>
           </header>
 
