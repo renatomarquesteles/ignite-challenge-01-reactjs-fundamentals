@@ -6,9 +6,15 @@ interface TaskProps {
   finished: boolean;
   content: string;
   deleteTask: () => void;
+  switchTaskStatus: () => void;
 }
 
-export const Task = ({ finished, content, deleteTask }: TaskProps) => {
+export const Task = ({
+  finished,
+  content,
+  deleteTask,
+  switchTaskStatus,
+}: TaskProps) => {
   return (
     <div
       className={`${styles.taskContainer} ${
@@ -18,6 +24,7 @@ export const Task = ({ finished, content, deleteTask }: TaskProps) => {
       <button
         title="Check/Uncheck Task"
         className={finished ? styles.checkedButton : styles.uncheckedButton}
+        onClick={switchTaskStatus}
       >
         {finished && <Check weight="bold" size={14} />}
       </button>

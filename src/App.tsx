@@ -8,8 +8,14 @@ import styles from './App.module.css';
 
 import './global.css';
 
+interface Task {
+  id: string;
+  finished: boolean;
+  content: string;
+}
+
 export const App = () => {
-  const [tasks, setTasks] = useState([
+  const [tasks, setTasks] = useState<Task[]>([
     {
       id: uuidv4(),
       finished: false,
@@ -21,6 +27,23 @@ export const App = () => {
       content: 'Do the homework',
     },
   ]);
+
+  const switchTaskStatus = (taskId: string) => {
+    setTasks((state) =>
+      state.reduce<Task[]>((newTasks, currentTask) => {
+        if (currentTask.id === taskId) {
+          return [
+            ...newTasks,
+            {
+              ...currentTask,
+              finished: !currentTask.finished,
+            },
+          ];
+        }
+        return [...newTasks, currentTask];
+      }, [])
+    );
+  };
 
   const deleteTask = (taskId: string) => {
     setTasks((state) => state.filter((task) => task.id !== taskId));
@@ -58,6 +81,7 @@ export const App = () => {
                   key={task.id}
                   finished={task.finished}
                   content={task.content}
+                  switchTaskStatus={() => switchTaskStatus(task.id)}
                   deleteTask={() => deleteTask(task.id)}
                 />
               ))}
